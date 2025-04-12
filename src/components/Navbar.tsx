@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Search, ShoppingCart, Menu, X, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,21 +17,20 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
-              <span className="text-brand-purple text-2xl font-bold">Deshi</span>
-              <span className="text-brand-teal text-2xl font-bold">Circuit</span>
-              <span className="text-brand-saffron text-2xl font-bold">Shala</span>
-            </a>
+            <Link to="/" className="flex items-center">
+              <span className="text-brand-purple text-2xl font-bold">TCubex</span>
+              <span className="text-gray-700 text-lg font-medium ml-1">Private Limited</span>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-brand-purple transition-colors">Home</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple transition-colors">Products</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple transition-colors">Learn</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple transition-colors">Projects</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple transition-colors">Blog</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple transition-colors">About</a>
+            <Link to="/" className="text-gray-700 hover:text-brand-purple transition-colors">Home</Link>
+            <Link to="/products" className="text-gray-700 hover:text-brand-purple transition-colors">Products</Link>
+            <Link to="/learn" className="text-gray-700 hover:text-brand-purple transition-colors">Learn</Link>
+            <Link to="/projects" className="text-gray-700 hover:text-brand-purple transition-colors">Projects</Link>
+            <Link to="/blog" className="text-gray-700 hover:text-brand-purple transition-colors">Blog</Link>
+            <Link to="/about" className="text-gray-700 hover:text-brand-purple transition-colors">About Us</Link>
           </div>
 
           {/* Search and Cart */}
@@ -62,12 +62,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white pt-2 pb-4 px-4">
           <div className="flex flex-col space-y-3">
-            <a href="#" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Home</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Products</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Learn</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Projects</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Blog</a>
-            <a href="#" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">About</a>
+            <Link to="/" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Home</Link>
+            <Link to="/products" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Products</Link>
+            <Link to="/learn" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Learn</Link>
+            <Link to="/projects" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Projects</Link>
+            <Link to="/blog" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Blog</Link>
+            <Link to="/about" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">About Us</Link>
             <div className="flex space-x-4 pt-2">
               <Button variant="ghost" size="icon">
                 <Search className="h-5 w-5" />

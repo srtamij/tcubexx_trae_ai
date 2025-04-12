@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -9,9 +10,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <span className="text-brand-purple text-xl font-bold">Deshi</span>
-              <span className="text-brand-teal text-xl font-bold">Circuit</span>
-              <span className="text-brand-saffron text-xl font-bold">Shala</span>
+              <span className="text-brand-purple text-xl font-bold">TCubex</span>
+              <span className="text-gray-400 text-sm font-medium ml-1">Private Limited</span>
             </div>
             <p className="text-gray-400 mb-6">
               Your premier destination for electronics components, DIY kits, and learning resources in India.
@@ -35,24 +35,24 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Shop</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Development Boards</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sensors & Modules</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">DIY Kits</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Components</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tools</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Books & Resources</a></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">Development Boards</Link></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">Sensors & Modules</Link></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">DIY Kits</Link></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">Components</Link></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">Tools</Link></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">Books & Resources</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Learn</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Project Ideas</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Workshop Resources</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Free E-Books</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Video Library</a></li>
+              <li><Link to="/learn" className="text-gray-400 hover:text-white transition-colors">Tutorials</Link></li>
+              <li><Link to="/projects" className="text-gray-400 hover:text-white transition-colors">Project Ideas</Link></li>
+              <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/learn" className="text-gray-400 hover:text-white transition-colors">Workshop Resources</Link></li>
+              <li><Link to="/learn" className="text-gray-400 hover:text-white transition-colors">Free E-Books</Link></li>
+              <li><Link to="/learn" className="text-gray-400 hover:text-white transition-colors">Video Library</Link></li>
             </ul>
           </div>
           
@@ -74,8 +74,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-brand-saffron mr-2" />
-                <a href="mailto:info@deshicircuitshala.com" className="text-gray-400 hover:text-white transition-colors">
-                  info@deshicircuitshala.com
+                <a href="mailto:info@tcubex.com" className="text-gray-400 hover:text-white transition-colors">
+                  info@tcubex.com
                 </a>
               </li>
             </ul>
@@ -85,13 +85,13 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} Deshi Circuit Shala. All rights reserved.
+              &copy; {new Date().getFullYear()} TCubex Private Limited. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Shipping</a>
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Refund Policy</a>
+              <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</Link>
+              <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</Link>
+              <Link to="/shipping" className="text-gray-500 hover:text-white text-sm transition-colors">Shipping</Link>
+              <Link to="/refund" className="text-gray-500 hover:text-white text-sm transition-colors">Refund Policy</Link>
             </div>
           </div>
         </div>
