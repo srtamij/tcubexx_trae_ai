@@ -62,8 +62,8 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-brand-purple mr-2 mt-0.5" />
                 <span className="text-gray-400">
-                  123 Maker Street, Electronics District,<br />
-                  Bengaluru, Karnataka 560001
+                  LIG B 20, Dr A.S Rao Nagar,<br />
+                  Kapra, Hyderabad
                 </span>
               </li>
               <li className="flex items-center">

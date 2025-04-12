@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
+import { MapPin, Mail, Phone } from 'lucide-react';
 
 const About = () => {
   return (
@@ -98,8 +100,60 @@ const About = () => {
           </div>
         </div>
 
-        {/* Our Journey */}
+        {/* Contact Information Section */}
         <div className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-12 text-center">Visit Us</h2>
+            <div className="max-w-4xl mx-auto">
+              <Card className="shadow-lg">
+                <CardContent className="p-6">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
+                      <div className="flex items-start">
+                        <MapPin className="h-5 w-5 text-brand-purple mr-3 mt-1" />
+                        <div>
+                          <p className="font-medium">Our Address:</p>
+                          <p className="text-gray-700">
+                            LIG B 20, Dr A.S Rao Nagar,<br />
+                            Kapra, Hyderabad
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center">
+                        <Phone className="h-5 w-5 text-brand-teal mr-3" />
+                        <div>
+                          <p className="font-medium">Phone:</p>
+                          <a href="tel:+919876543210" className="text-gray-700 hover:text-brand-purple">
+                            +91 98765 43210
+                          </a>
+                        </div>
+                      </div>
+                      <div className="flex items-center">
+                        <Mail className="h-5 w-5 text-brand-saffron mr-3" />
+                        <div>
+                          <p className="font-medium">Email:</p>
+                          <a href="mailto:info@tcubex.com" className="text-gray-700 hover:text-brand-purple">
+                            info@tcubex.com
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-gray-100 p-4 rounded-lg h-64 flex items-center justify-center">
+                      <p className="text-gray-500 text-center">
+                        Map will be displayed here<br/>
+                        (Google Maps integration)
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        {/* Our Journey */}
+        <div className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">Our Journey</h2>
             <div className="max-w-3xl mx-auto">
