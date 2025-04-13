@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Clock, Tag, ThumbsUp, MessageSquare, Share2, BookOpen, Zap, Robot } from 'lucide-react';
+import { Calendar, Clock, Tag, ThumbsUp, MessageSquare, Share2, BookOpen, Zap, Bot } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BlogPost from '@/components/BlogPost';
 
@@ -113,7 +113,7 @@ const Blog = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <div className="flex items-center justify-center mb-6">
-                <Robot className="text-brand-purple h-10 w-10 mr-3" />
+                <Bot className="text-brand-purple h-10 w-10 mr-3" />
                 <BookOpen className="text-brand-teal h-10 w-10" />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">TCubex Blog & Robotics Hub</h1>
