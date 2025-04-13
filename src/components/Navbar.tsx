@@ -2,13 +2,18 @@
 import React, { useState } from 'react';
 import { Search, ShoppingCart, Menu, X, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path ? "text-brand-purple font-medium" : "text-gray-700 hover:text-brand-purple";
   };
 
   return (
@@ -25,12 +30,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-brand-purple transition-colors">Home</Link>
-            <Link to="/products" className="text-gray-700 hover:text-brand-purple transition-colors">Products</Link>
-            <Link to="/learn" className="text-gray-700 hover:text-brand-purple transition-colors">Learn</Link>
-            <Link to="/projects" className="text-gray-700 hover:text-brand-purple transition-colors">Projects</Link>
-            <Link to="/blog" className="text-gray-700 hover:text-brand-purple transition-colors">Blog</Link>
-            <Link to="/about" className="text-gray-700 hover:text-brand-purple transition-colors">About Us</Link>
+            <Link to="/" className={`transition-colors ${isActive('/')}`}>Home</Link>
+            <Link to="/products" className={`transition-colors ${isActive('/products')}`}>Products</Link>
+            <Link to="/learn" className={`transition-colors ${isActive('/learn')}`}>Learn</Link>
+            <Link to="/projects" className={`transition-colors ${isActive('/projects')}`}>Projects</Link>
+            <Link to="/blog" className={`transition-colors ${isActive('/blog')}`}>Blog</Link>
+            <Link to="/about" className={`transition-colors ${isActive('/about')}`}>About Us</Link>
           </div>
 
           {/* Search and Cart */}
@@ -62,12 +67,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white pt-2 pb-4 px-4">
           <div className="flex flex-col space-y-3">
-            <Link to="/" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Home</Link>
-            <Link to="/products" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Products</Link>
-            <Link to="/learn" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Learn</Link>
-            <Link to="/projects" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Projects</Link>
-            <Link to="/blog" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">Blog</Link>
-            <Link to="/about" className="text-gray-700 hover:text-brand-purple py-2 transition-colors">About Us</Link>
+            <Link to="/" className={`py-2 transition-colors ${isActive('/')}`}>Home</Link>
+            <Link to="/products" className={`py-2 transition-colors ${isActive('/products')}`}>Products</Link>
+            <Link to="/learn" className={`py-2 transition-colors ${isActive('/learn')}`}>Learn</Link>
+            <Link to="/projects" className={`py-2 transition-colors ${isActive('/projects')}`}>Projects</Link>
+            <Link to="/blog" className={`py-2 transition-colors ${isActive('/blog')}`}>Blog</Link>
+            <Link to="/about" className={`py-2 transition-colors ${isActive('/about')}`}>About Us</Link>
             <div className="flex space-x-4 pt-2">
               <Button variant="ghost" size="icon">
                 <Search className="h-5 w-5" />
