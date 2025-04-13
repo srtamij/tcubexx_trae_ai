@@ -11,7 +11,7 @@ const Products = () => {
     {
       id: 1,
       name: 'Raspberry Pi 5',
-      image: 'https://images.unsplash.com/photo-1601049676869-702ea24cfd58?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 8999,
       category: 'Development Boards',
       inStock: true,
@@ -19,7 +19,7 @@ const Products = () => {
     {
       id: 2,
       name: 'Arduino Uno R4 WiFi',
-      image: 'https://images.unsplash.com/photo-1606248896998-6b745a238a22?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1553406830-ef409b4721a3?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 3999,
       category: 'Development Boards',
       inStock: true,
@@ -27,7 +27,7 @@ const Products = () => {
     {
       id: 3,
       name: 'ESP32 Development Board',
-      image: 'https://images.unsplash.com/photo-1659534588955-151d53113735?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1650470337275-10aa652e5df6?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 699,
       category: 'Development Boards',
       inStock: true,
@@ -35,7 +35,7 @@ const Products = () => {
     {
       id: 4,
       name: 'Temperature & Humidity Sensor (DHT22)',
-      image: 'https://images.unsplash.com/photo-1597692493931-4339185d8d34?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 299,
       category: 'Sensors & Modules',
       inStock: true,
@@ -43,7 +43,7 @@ const Products = () => {
     {
       id: 5,
       name: 'PIR Motion Sensor',
-      image: 'https://images.unsplash.com/photo-1610305401607-c519b6c9b6d1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1603732551658-5fabbafa84eb?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 149,
       category: 'Sensors & Modules',
       inStock: true,
@@ -51,7 +51,7 @@ const Products = () => {
     {
       id: 6,
       name: 'DIY Smart Home Kit',
-      image: 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 2499,
       category: 'DIY Kits',
       inStock: true,
@@ -59,7 +59,7 @@ const Products = () => {
     {
       id: 7,
       name: 'Ultrasonic Distance Sensor',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 199,
       category: 'Sensors & Modules',
       inStock: false,
@@ -67,7 +67,7 @@ const Products = () => {
     {
       id: 8,
       name: 'LED Matrix Display',
-      image: 'https://images.unsplash.com/photo-1563642421748-5047b6585a4a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+      image: 'https://images.unsplash.com/photo-1586179254644-6171903ebd81?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3',
       price: 599,
       category: 'Components',
       inStock: true,
