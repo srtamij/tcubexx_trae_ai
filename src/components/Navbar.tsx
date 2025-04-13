@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart, Menu, X, User, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -15,6 +16,19 @@ const Navbar = () => {
   const isActive = (path) => {
     return location.pathname === path ? "text-brand-purple font-medium" : "text-gray-700 hover:text-brand-purple";
   };
+
+  // Listen for cart updates
+  useEffect(() => {
+    const handleCartUpdate = () => {
+      setCartCount(prev => prev + 1);
+    };
+
+    window.addEventListener('cart-updated', handleCartUpdate);
+    
+    return () => {
+      window.removeEventListener('cart-updated', handleCartUpdate);
+    };
+  }, []);
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -57,7 +71,7 @@ const Navbar = () => {
               <Button variant="ghost" size="icon">
                 <ShoppingCart className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 bg-brand-purple text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
+                  {cartCount}
                 </span>
               </Button>
             </Link>
@@ -97,7 +111,7 @@ const Navbar = () => {
                 <Button variant="ghost" size="icon">
                   <ShoppingCart className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-brand-purple text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    0
+                    {cartCount}
                   </span>
                 </Button>
               </Link>

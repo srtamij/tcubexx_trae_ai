@@ -1,13 +1,15 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Book, Video, FileText, Code, Award, Users } from 'lucide-react';
+import { Book, Video, FileText, Code, Award, Users, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Learn = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  
   // Sample learning resources data
   const learningCategories = [
     {
@@ -16,6 +18,12 @@ const Learn = () => {
       description: 'Step-by-step guides to get started with electronics and programming',
       icon: <Book className="h-8 w-8 text-brand-purple" />,
       count: 24,
+      resources: [
+        { id: 101, title: 'Getting Started with Arduino', type: 'Tutorial', level: 'Beginner' },
+        { id: 102, title: 'Understanding Digital Logic', type: 'Tutorial', level: 'Intermediate' },
+        { id: 103, title: 'Programming the ESP32', type: 'Tutorial', level: 'Beginner' },
+        { id: 104, title: 'Building Your First IoT Project', type: 'Tutorial', level: 'Intermediate' }
+      ]
     },
     {
       id: 2,
@@ -23,6 +31,12 @@ const Learn = () => {
       description: 'In-depth video series covering various electronic topics',
       icon: <Video className="h-8 w-8 text-brand-teal" />,
       count: 12,
+      resources: [
+        { id: 201, title: 'Complete Raspberry Pi Course', type: 'Video', level: 'All Levels' },
+        { id: 202, title: 'Machine Learning on Microcontrollers', type: 'Video', level: 'Advanced' },
+        { id: 203, title: 'Sensor Interfacing Masterclass', type: 'Video', level: 'Intermediate' },
+        { id: 204, title: '3D Printing for Electronics Projects', type: 'Video', level: 'Beginner' }
+      ]
     },
     {
       id: 3,
@@ -30,6 +44,12 @@ const Learn = () => {
       description: 'Detailed documentation for components and development boards',
       icon: <FileText className="h-8 w-8 text-brand-saffron" />,
       count: 48,
+      resources: [
+        { id: 301, title: 'Raspberry Pi 5 Technical Documentation', type: 'Documentation', level: 'Reference' },
+        { id: 302, title: 'Arduino Uno R4 WiFi Datasheet', type: 'Documentation', level: 'Reference' },
+        { id: 303, title: 'ESP32 Pin Configuration Guide', type: 'Documentation', level: 'Reference' },
+        { id: 304, title: 'DHT22 Sensor Specifications', type: 'Documentation', level: 'Reference' }
+      ]
     },
     {
       id: 4,
@@ -37,6 +57,12 @@ const Learn = () => {
       description: 'Ready-to-use code examples for common projects',
       icon: <Code className="h-8 w-8 text-blue-500" />,
       count: 36,
+      resources: [
+        { id: 401, title: 'Arduino LED Patterns Library', type: 'Code', level: 'Beginner' },
+        { id: 402, title: 'ESP32 WiFi Manager Code', type: 'Code', level: 'Intermediate' },
+        { id: 403, title: 'Raspberry Pi Camera Examples', type: 'Code', level: 'Beginner' },
+        { id: 404, title: 'IoT Dashboard with MQTT', type: 'Code', level: 'Advanced' }
+      ]
     },
     {
       id: 5,
@@ -44,6 +70,12 @@ const Learn = () => {
       description: 'Earn certificates by completing our structured courses',
       icon: <Award className="h-8 w-8 text-yellow-500" />,
       count: 5,
+      resources: [
+        { id: 501, title: 'Arduino Developer Certificate', type: 'Certification', level: 'Professional' },
+        { id: 502, title: 'IoT Solutions Architect', type: 'Certification', level: 'Professional' },
+        { id: 503, title: 'Electronics Design Fundamentals', type: 'Certification', level: 'Beginner' },
+        { id: 504, title: 'Embedded Systems Expert', type: 'Certification', level: 'Advanced' }
+      ]
     },
     {
       id: 6,
@@ -51,8 +83,22 @@ const Learn = () => {
       description: 'Join discussions and get help from our community',
       icon: <Users className="h-8 w-8 text-green-500" />,
       count: 1000,
+      resources: [
+        { id: 601, title: 'Beginner Questions & Answers', type: 'Forum', level: 'Community' },
+        { id: 602, title: 'Project Showcase', type: 'Forum', level: 'Community' },
+        { id: 603, title: 'Troubleshooting Help', type: 'Forum', level: 'Community' },
+        { id: 604, title: 'Electronics News & Discussions', type: 'Forum', level: 'Community' }
+      ]
     },
   ];
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const closeResourceModal = () => {
+    setSelectedCategory(null);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -93,7 +139,11 @@ const Learn = () => {
                     <p className="text-gray-600 mb-4">{category.description}</p>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-500">{category.count} resources</span>
-                      <Button variant="link" className="text-brand-purple p-0">
+                      <Button 
+                        variant="link" 
+                        className="text-brand-purple p-0"
+                        onClick={() => handleCategoryClick(category)}
+                      >
                         Explore →
                       </Button>
                     </div>
@@ -103,6 +153,48 @@ const Learn = () => {
             </div>
           </div>
         </div>
+
+        {/* Resource Modal */}
+        {selectedCategory && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[80vh] overflow-auto">
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex items-center gap-3">
+                    {selectedCategory.icon}
+                    <h2 className="text-2xl font-bold">{selectedCategory.title}</h2>
+                  </div>
+                  <Button variant="ghost" size="icon" onClick={closeResourceModal}>
+                    <X className="h-5 w-5" />
+                  </Button>
+                </div>
+                
+                <div className="space-y-4">
+                  {selectedCategory.resources.map(resource => (
+                    <div key={resource.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="font-medium text-lg">{resource.title}</h3>
+                          <div className="flex gap-2 mt-1">
+                            <span className="text-xs bg-brand-purple/10 text-brand-purple px-2 py-1 rounded-full">
+                              {resource.type}
+                            </span>
+                            <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+                              {resource.level}
+                            </span>
+                          </div>
+                        </div>
+                        <Button size="sm" className="bg-brand-purple hover:bg-brand-purple/90">
+                          View
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Featured Course */}
         <div className="py-16 bg-gray-50">

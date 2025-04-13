@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Search, Filter, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from "@/hooks/use-toast";
 
 const Products = () => {
   // Sample product data
@@ -84,6 +85,21 @@ const Products = () => {
     'Tools',
     'Books & Resources',
   ];
+  
+  // Function to handle adding a product to cart
+  const handleAddToCart = (product) => {
+    // Here we would typically update a cart state or send to an API
+    // For now, we'll just show a toast notification
+    toast({
+      title: `${product.name} added to cart!`,
+      description: product.inStock ? "Item has been added to your cart" : "You will be notified when this item is back in stock",
+      variant: product.inStock ? "default" : "destructive",
+    });
+    
+    // Update cart count in navbar (this would be handled by a global state manager in a real app)
+    const event = new CustomEvent('cart-updated');
+    window.dispatchEvent(event);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -170,7 +186,10 @@ const Products = () => {
                       {product.inStock ? 'In Stock' : 'Out of Stock'}
                     </span>
                   </div>
-                  <Button className="w-full mt-4 bg-brand-purple hover:bg-brand-purple/90 text-white">
+                  <Button 
+                    className="w-full mt-4 bg-brand-purple hover:bg-brand-purple/90 text-white"
+                    onClick={() => handleAddToCart(product)}
+                  >
                     {product.inStock ? 'Add to Cart' : 'Notify Me'}
                   </Button>
                 </div>
