@@ -12,10 +12,9 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/545807b0-b1d8-485e-ad30-9188afe6daad.png" 
                 alt="T-CubeX Logo" 
-                className="h-10 w-auto mr-2" 
+                className="h-12 w-12 rounded-lg bg-soft-purple" 
               />
-              <span className="text-brand-purple text-xl font-bold">TCubex</span>
-              <span className="text-gray-400 text-sm font-medium ml-1">Private Limited</span>
+              <span className="text-brand-purple text-xl font-bold ml-2">TCubex</span>
             </div>
             <p className="text-gray-400 mb-6">
               Your premier destination for electronics components, DIY kits, and learning resources in India.

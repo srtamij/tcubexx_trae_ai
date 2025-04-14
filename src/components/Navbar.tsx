@@ -16,7 +16,6 @@ const Navbar = () => {
     return location.pathname === path ? "text-brand-purple font-medium" : "text-gray-700 hover:text-brand-purple";
   };
 
-  // Listen for cart updates
   useEffect(() => {
     const handleCartUpdate = () => {
       setCartCount(prev => prev + 1);
@@ -39,10 +38,9 @@ const Navbar = () => {
               <img 
                 src="/lovable-uploads/545807b0-b1d8-485e-ad30-9188afe6daad.png" 
                 alt="T-CubeX Logo" 
-                className="h-10 w-auto mr-2" 
+                className="h-12 w-12 rounded-lg bg-soft-purple" 
               />
-              <span className="text-brand-purple text-2xl font-bold">TCubex</span>
-              <span className="text-gray-700 text-lg font-medium ml-1">Private Limited</span>
+              <span className="text-brand-purple text-2xl font-bold ml-2">TCubex</span>
             </Link>
           </div>
 
