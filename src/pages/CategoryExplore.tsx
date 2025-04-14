@@ -35,7 +35,7 @@ const categoryContent = {
       {
         title: 'Temperature Sensor',
         description: 'High-precision temperature measurement',
-        image: 'https://images.unsplash.com/photo-1597781914467-a5b93258e748?q=80&w=3174&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop',
       },
       {
         title: 'Motion Sensor',
@@ -57,6 +57,54 @@ const categoryContent = {
         title: 'Robot Building Kit',
         description: 'Build your own programmable robot',
         image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2970&auto=format&fit=crop',
+      }
+    ]
+  },
+  'components': {
+    title: 'Components',
+    description: 'Essential electronic components for your projects',
+    items: [
+      {
+        title: 'LED Pack',
+        description: 'Various colors of LED components',
+        image: 'https://images.unsplash.com/photo-1632435285572-c275ae67de69?q=80&w=3088&auto=format&fit=crop',
+      },
+      {
+        title: 'Resistor Kit',
+        description: 'Complete set of commonly used resistors',
+        image: 'https://images.unsplash.com/photo-1593059185056-a5b95034c9d7?q=80&w=3087&auto=format&fit=crop',
+      }
+    ]
+  },
+  'tools': {
+    title: 'Tools',
+    description: 'Professional tools for electronics work',
+    items: [
+      {
+        title: 'Soldering Station',
+        description: 'Professional temperature-controlled soldering station',
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop',
+      },
+      {
+        title: 'Digital Multimeter',
+        description: 'Precise measurements for voltage, current, and resistance',
+        image: 'https://images.unsplash.com/photo-1629292863456-2e341458c70a?q=80&w=3087&auto=format&fit=crop',
+      }
+    ]
+  },
+  'books-resources': {
+    title: 'Books & Resources',
+    description: 'Learning materials for electronics enthusiasts',
+    items: [
+      {
+        title: 'Electronics Fundamentals',
+        description: 'Comprehensive guide to electronics basics',
+        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=3174&auto=format&fit=crop',
+      },
+      {
+        title: 'Arduino Programming Guide',
+        description: 'Master Arduino programming with practical examples',
+        image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=2970&auto=format&fit=crop',
       }
     ]
   }
