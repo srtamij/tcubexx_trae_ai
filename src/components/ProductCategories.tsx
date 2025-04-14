@@ -1,27 +1,28 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const categories = [
   {
-    id: 1,
+    id: 'development-boards',
     name: 'Development Boards',
     description: 'Arduino, Raspberry Pi, ESP32 and more',
-    image: 'https://images.unsplash.com/photo-1553406830-ef409b4721a3?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1553406830-ef409b4721a3?q=80&w=3174&auto=format&fit=crop',
     color: 'bg-brand-purple',
   },
   {
-    id: 2,
+    id: 'sensors-modules',
     name: 'Sensors & Modules',
     description: 'Temperature, moisture, motion sensors',
-    image: 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=2970&auto=format&fit=crop',
     color: 'bg-brand-teal',
   },
   {
-    id: 3,
+    id: 'diy-kits',
     name: 'DIY Kits',
     description: 'Electronics kits for all skill levels',
-    image: 'https://images.unsplash.com/photo-1597781914467-a5b93258e748?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1597781914467-a5b93258e748?q=80&w=3174&auto=format&fit=crop',
     color: 'bg-brand-saffron',
   },
   {
@@ -76,12 +77,12 @@ const ProductCategories = () => {
               <div className="absolute bottom-0 left-0 p-6 w-full">
                 <h3 className="text-xl font-bold text-white mb-1">{category.name}</h3>
                 <p className="text-white/80 text-sm mb-4">{category.description}</p>
-                <a 
-                  href="#" 
+                <Link 
+                  to={`/explore/${category.id}`}
                   className={`inline-flex items-center text-white text-sm font-medium ${category.color.replace('bg-', 'text-')} hover:underline`}
                 >
                   Explore <ArrowRight className="ml-1 h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
