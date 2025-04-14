@@ -35,12 +35,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <img 
-                src="/lovable-uploads/545807b0-b1d8-485e-ad30-9188afe6daad.png" 
-                alt="T-CubeX Logo" 
-                className="h-12 w-12 rounded-lg bg-soft-purple" 
-              />
-              <span className="text-brand-purple text-2xl font-bold ml-2">TCubex</span>
+              <span className="text-brand-purple text-3xl font-bold font-orbitron tracking-tight">TCubex</span>
             </Link>
           </div>
 
