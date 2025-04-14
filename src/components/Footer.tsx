@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,6 +9,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/545807b0-b1d8-485e-ad30-9188afe6daad.png" 
+                alt="T-CubeX Logo" 
+                className="h-10 w-auto mr-2" 
+              />
               <span className="text-brand-purple text-xl font-bold">TCubex</span>
               <span className="text-gray-400 text-sm font-medium ml-1">Private Limited</span>
             </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart, Menu, X, User, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -37,6 +36,11 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/545807b0-b1d8-485e-ad30-9188afe6daad.png" 
+                alt="T-CubeX Logo" 
+                className="h-10 w-auto mr-2" 
+              />
               <span className="text-brand-purple text-2xl font-bold">TCubex</span>
               <span className="text-gray-700 text-lg font-medium ml-1">Private Limited</span>
             </Link>
