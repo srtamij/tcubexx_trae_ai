@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -6,9 +5,9 @@ import { Search, Filter, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/hooks/use-toast";
 import { useCart } from '@/contexts/CartContext';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
-  // Updated product data with robu.in images and details
   const allProducts = [
     {
       id: 1,
@@ -83,7 +82,6 @@ const Products = () => {
   const [sortOption, setSortOption] = useState('Featured');
   const { addToCart } = useCart();
 
-  // Categories for filter
   const categories = [
     'All Categories',
     'Development Boards',
@@ -94,32 +92,27 @@ const Products = () => {
     'Books & Resources',
   ];
 
-  // Apply filters and sorting
   useEffect(() => {
     let filteredProducts = [...allProducts];
     
-    // Apply search filter
     if (searchQuery) {
       filteredProducts = filteredProducts.filter(product =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
     
-    // Apply category filter
     if (categoryFilter !== 'All Categories') {
       filteredProducts = filteredProducts.filter(product =>
         product.category === categoryFilter
       );
     }
     
-    // Apply stock filter
     if (stockFilter === 'In Stock') {
       filteredProducts = filteredProducts.filter(product => product.inStock);
     } else if (stockFilter === 'Out of Stock') {
       filteredProducts = filteredProducts.filter(product => !product.inStock);
     }
     
-    // Apply sorting
     switch (sortOption) {
       case 'Price: Low to High':
         filteredProducts.sort((a, b) => a.price - b.price);
@@ -128,22 +121,18 @@ const Products = () => {
         filteredProducts.sort((a, b) => b.price - a.price);
         break;
       case 'Newest First':
-        // For this example, we'll just reverse the array as a simple approximation
         filteredProducts.reverse();
         break;
       default:
-        // 'Featured' is default - no sorting needed
         break;
     }
     
     setProducts(filteredProducts);
   }, [searchQuery, categoryFilter, stockFilter, sortOption]);
   
-  // Function to handle adding a product to cart
   const handleAddToCart = (product) => {
     addToCart(product);
     
-    // Show toast notification
     toast({
       title: `${product.name} added to cart!`,
       description: product.inStock ? "Item has been added to your cart" : "You will be notified when this item is back in stock",
@@ -151,16 +140,13 @@ const Products = () => {
     });
   };
 
-  // Function to handle search
   const handleSearch = () => {
-    // Search is already being handled in the useEffect
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        {/* Hero Section */}
         <div className="bg-gradient-to-r from-brand-purple/10 to-brand-teal/10 py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl">
@@ -170,7 +156,6 @@ const Products = () => {
                 Quality products at competitive prices, shipped across India and beyond.
               </p>
               
-              {/* Search Bar */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-grow">
                   <input
@@ -193,9 +178,7 @@ const Products = () => {
           </div>
         </div>
 
-        {/* Product Listing */}
         <div className="container mx-auto px-4 py-12">
-          {/* Filters and Sort */}
           <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
             <div className="flex items-center space-x-4">
               <div className="flex items-center">
@@ -242,17 +225,26 @@ const Products = () => {
             </div>
           </div>
 
-          {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.length > 0 ? (
               products.map((product) => (
                 <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="h-48 overflow-hidden">
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover transform hover:scale-105 transition-transform" />
-                  </div>
+                  <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
+                             product.id === 2 ? 'arduino-uno-r4' : 
+                             product.id === 3 ? 'esp32-devkit' : 
+                             'dht22-sensor'}`}>
+                    <div className="h-48 overflow-hidden">
+                      <img src={product.image} alt={product.name} className="w-full h-full object-cover transform hover:scale-105 transition-transform" />
+                    </div>
+                  </Link>
                   <div className="p-4">
                     <div className="text-xs text-gray-500 mb-1">{product.category}</div>
-                    <h3 className="font-medium text-lg mb-2">{product.name}</h3>
+                    <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
+                             product.id === 2 ? 'arduino-uno-r4' : 
+                             product.id === 3 ? 'esp32-devkit' : 
+                             'dht22-sensor'}`}>
+                      <h3 className="font-medium text-lg mb-2 hover:text-brand-purple">{product.name}</h3>
+                    </Link>
                     <div className="flex justify-between items-center">
                       <span className="font-bold text-brand-purple">₹{product.price.toLocaleString()}</span>
                       <span className={`text-xs px-2 py-1 rounded-full ${product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
@@ -275,7 +267,6 @@ const Products = () => {
             )}
           </div>
 
-          {/* Pagination */}
           <div className="flex justify-center mt-12">
             <div className="flex space-x-1">
               <Button variant="outline" className="text-gray-500" disabled>

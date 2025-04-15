@@ -78,18 +78,23 @@ const FeaturedProducts = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => (
             <div key={product.id} className="product-card group">
-              <div className="relative h-60 overflow-hidden rounded-t-lg">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover product-img"
-                />
-                {product.tag && (
-                  <div className={`absolute top-3 left-3 py-1 px-3 text-sm text-white font-medium rounded-full ${product.tagColor}`}>
-                    {product.tag}
-                  </div>
-                )}
-              </div>
+              <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
+                         product.id === 2 ? 'arduino-uno-r4' : 
+                         product.id === 3 ? 'esp32-devkit' : 
+                         'dht22-sensor'}`}>
+                <div className="relative h-60 overflow-hidden rounded-t-lg">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover product-img"
+                  />
+                  {product.tag && (
+                    <div className={`absolute top-3 left-3 py-1 px-3 text-sm text-white font-medium rounded-full ${product.tagColor}`}>
+                      {product.tag}
+                    </div>
+                  )}
+                </div>
+              </Link>
               
               <div className="p-4">
                 <div className="flex items-center mb-1">
@@ -106,7 +111,12 @@ const FeaturedProducts = () => {
                   <span className="text-xs text-gray-500 ml-1">({product.rating})</span>
                 </div>
                 
-                <h3 className="font-medium mb-1">{product.name}</h3>
+                <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
+                           product.id === 2 ? 'arduino-uno-r4' : 
+                           product.id === 3 ? 'esp32-devkit' : 
+                           'dht22-sensor'}`}>
+                  <h3 className="font-medium mb-1 hover:text-brand-purple">{product.name}</h3>
+                </Link>
                 <p className="text-brand-purple font-bold mb-3">₹{product.price.toLocaleString()}</p>
                 
                 <Button 
