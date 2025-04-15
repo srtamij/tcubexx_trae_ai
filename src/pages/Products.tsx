@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Search, Filter, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/hooks/use-toast";
+import { useCart } from '@/contexts/CartContext';
 
 const Products = () => {
   // Sample product data
-  const products = [
+  const allProducts = [
     {
       id: 1,
       name: 'Raspberry Pi 5',
@@ -74,6 +76,13 @@ const Products = () => {
     },
   ];
 
+  const [products, setProducts] = useState(allProducts);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('All Categories');
+  const [stockFilter, setStockFilter] = useState('All Products');
+  const [sortOption, setSortOption] = useState('Featured');
+  const { addToCart } = useCart();
+
   // Categories for filter
   const categories = [
     'All Categories',
@@ -84,20 +93,67 @@ const Products = () => {
     'Tools',
     'Books & Resources',
   ];
+
+  // Apply filters and sorting
+  useEffect(() => {
+    let filteredProducts = [...allProducts];
+    
+    // Apply search filter
+    if (searchQuery) {
+      filteredProducts = filteredProducts.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    
+    // Apply category filter
+    if (categoryFilter !== 'All Categories') {
+      filteredProducts = filteredProducts.filter(product =>
+        product.category === categoryFilter
+      );
+    }
+    
+    // Apply stock filter
+    if (stockFilter === 'In Stock') {
+      filteredProducts = filteredProducts.filter(product => product.inStock);
+    } else if (stockFilter === 'Out of Stock') {
+      filteredProducts = filteredProducts.filter(product => !product.inStock);
+    }
+    
+    // Apply sorting
+    switch (sortOption) {
+      case 'Price: Low to High':
+        filteredProducts.sort((a, b) => a.price - b.price);
+        break;
+      case 'Price: High to Low':
+        filteredProducts.sort((a, b) => b.price - a.price);
+        break;
+      case 'Newest First':
+        // For this example, we'll just reverse the array as a simple approximation
+        filteredProducts.reverse();
+        break;
+      default:
+        // 'Featured' is default - no sorting needed
+        break;
+    }
+    
+    setProducts(filteredProducts);
+  }, [searchQuery, categoryFilter, stockFilter, sortOption]);
   
   // Function to handle adding a product to cart
   const handleAddToCart = (product) => {
-    // Here we would typically update a cart state or send to an API
-    // For now, we'll just show a toast notification
+    addToCart(product);
+    
+    // Show toast notification
     toast({
       title: `${product.name} added to cart!`,
       description: product.inStock ? "Item has been added to your cart" : "You will be notified when this item is back in stock",
       variant: product.inStock ? "default" : "destructive",
     });
-    
-    // Update cart count in navbar (this would be handled by a global state manager in a real app)
-    const event = new CustomEvent('cart-updated');
-    window.dispatchEvent(event);
+  };
+
+  // Function to handle search
+  const handleSearch = () => {
+    // Search is already being handled in the useEffect
   };
 
   return (
@@ -120,11 +176,16 @@ const Products = () => {
                   <input
                     type="text"
                     placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full px-4 py-3 pr-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
                   />
                   <Search className="absolute right-3 top-3 text-gray-400" />
                 </div>
-                <Button className="bg-brand-purple hover:bg-brand-purple/90 text-white">
+                <Button 
+                  className="bg-brand-purple hover:bg-brand-purple/90 text-white"
+                  onClick={handleSearch}
+                >
                   Search
                 </Button>
               </div>
@@ -142,7 +203,11 @@ const Products = () => {
                 <span className="text-gray-700 font-medium">Filters:</span>
               </div>
               <div className="relative">
-                <select className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent">
+                <select 
+                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
+                  value={categoryFilter}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
+                >
                   {categories.map((category, index) => (
                     <option key={index}>{category}</option>
                   ))}
@@ -150,7 +215,11 @@ const Products = () => {
                 <ChevronDown className="absolute right-2 top-2.5 h-4 w-4 text-gray-500 pointer-events-none" />
               </div>
               <div className="relative">
-                <select className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent">
+                <select 
+                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
+                  value={stockFilter}
+                  onChange={(e) => setStockFilter(e.target.value)}
+                >
                   <option>All Products</option>
                   <option>In Stock</option>
                   <option>Out of Stock</option>
@@ -159,8 +228,12 @@ const Products = () => {
               </div>
             </div>
             <div className="relative">
-              <select className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent">
-                <option>Sort by: Featured</option>
+              <select 
+                className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                <option>Featured</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
                 <option>Newest First</option>
@@ -171,29 +244,35 @@ const Products = () => {
 
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="h-48 overflow-hidden">
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover transform hover:scale-105 transition-transform" />
-                </div>
-                <div className="p-4">
-                  <div className="text-xs text-gray-500 mb-1">{product.category}</div>
-                  <h3 className="font-medium text-lg mb-2">{product.name}</h3>
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-brand-purple">₹{product.price.toLocaleString()}</span>
-                    <span className={`text-xs px-2 py-1 rounded-full ${product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                      {product.inStock ? 'In Stock' : 'Out of Stock'}
-                    </span>
+            {products.length > 0 ? (
+              products.map((product) => (
+                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="h-48 overflow-hidden">
+                    <img src={product.image} alt={product.name} className="w-full h-full object-cover transform hover:scale-105 transition-transform" />
                   </div>
-                  <Button 
-                    className="w-full mt-4 bg-brand-purple hover:bg-brand-purple/90 text-white"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    {product.inStock ? 'Add to Cart' : 'Notify Me'}
-                  </Button>
+                  <div className="p-4">
+                    <div className="text-xs text-gray-500 mb-1">{product.category}</div>
+                    <h3 className="font-medium text-lg mb-2">{product.name}</h3>
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-brand-purple">₹{product.price.toLocaleString()}</span>
+                      <span className={`text-xs px-2 py-1 rounded-full ${product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                        {product.inStock ? 'In Stock' : 'Out of Stock'}
+                      </span>
+                    </div>
+                    <Button 
+                      className="w-full mt-4 bg-brand-purple hover:bg-brand-purple/90 text-white"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      {product.inStock ? 'Add to Cart' : 'Notify Me'}
+                    </Button>
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="col-span-4 py-8 text-center">
+                <p className="text-gray-500">No products found matching your criteria.</p>
               </div>
-            ))}
+            )}
           </div>
 
           {/* Pagination */}
