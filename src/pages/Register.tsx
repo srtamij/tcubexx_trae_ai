@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,9 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -27,6 +29,9 @@ const formSchema = z.object({
 });
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,9 +42,50 @@ const Register = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Here you would implement actual registration with Supabase
-    console.log("Registration attempt:", values.email);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    
+    try {
+      // Register the user with Supabase
+      const { data, error } = await supabase.auth.signUp({
+        email: values.email,
+        password: values.password,
+        options: {
+          data: {
+            full_name: values.name,
+          }
+        }
+      });
+
+      if (error) {
+        toast({
+          title: "Registration failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        console.error("Registration error:", error);
+        return;
+      }
+
+      // Show success message
+      toast({
+        title: "Registration successful!",
+        description: "Welcome to TCubex! You can now log in.",
+      });
+      
+      // Redirect to login page
+      navigate('/login');
+      
+    } catch (error) {
+      console.error("Unexpected error during registration:", error);
+      toast({
+        title: "Registration failed",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -108,8 +154,8 @@ const Register = () => {
                   )}
                 />
                 
-                <Button type="submit" className="w-full bg-brand-purple hover:bg-brand-purple/90">
-                  Register
+                <Button type="submit" className="w-full bg-brand-purple hover:bg-brand-purple/90" disabled={isLoading}>
+                  {isLoading ? "Creating Account..." : "Register"}
                 </Button>
               </form>
             </Form>

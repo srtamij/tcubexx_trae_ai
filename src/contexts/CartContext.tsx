@@ -41,6 +41,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(items));
+    console.log('Cart saved to localStorage:', items); // Debug log
   }, [items]);
 
   const addToCart = (product: any, quantity: number = 1) => {
@@ -56,14 +57,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         );
       } else {
         // Add new item
-        return [...prevItems, { 
+        const newItem = { 
           id: product.id, 
           name: product.name, 
           price: typeof product.price === 'number' ? product.price : parseInt(product.price.replace(/[^\d]/g, '')), 
           image: product.image,
           quantity,
           category: product.category
-        }];
+        };
+        console.log('Adding new item to cart:', newItem); // Debug log
+        return [...prevItems, newItem];
       }
     });
   };
