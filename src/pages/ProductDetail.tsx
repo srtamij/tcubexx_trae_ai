@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,14 +7,13 @@ import { useCart } from '@/contexts/CartContext';
 import { toast } from "@/hooks/use-toast";
 import { Star, ShoppingCart, Package, Info, Shield, Truck } from 'lucide-react';
 
-// Extended product data with more details
 const productsData = {
   'raspberry-pi-5': {
     id: 1,
     name: 'Raspberry Pi 5 - 8GB RAM',
     price: 12499,
     rating: 5,
-    image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-8GB.jpg',
+    image: 'https://robocraze.com/cdn/shop/products/raspberry-pi-5-8gb_1_720x.jpg',
     description: 'The Raspberry Pi 5 is the latest and most powerful single-board computer from the Raspberry Pi Foundation. With 8GB of RAM, it offers exceptional performance for makers, hobbyists, and developers.',
     highlights: [
       'Powerful quad-core processor',
@@ -33,7 +31,7 @@ const productsData = {
     name: 'Arduino UNO R4 WiFi',
     price: 4999,
     rating: 4.8,
-    image: 'https://robu.in/wp-content/uploads/2023/05/Arduino-UNO-R4-WIFI.jpg',
+    image: 'https://robocraze.com/cdn/shop/products/arduino-uno-r4-wifi_1_720x.jpg',
     description: 'The Arduino UNO R4 WiFi is the latest iteration of the most popular Arduino board, now with built-in WiFi capabilities and enhanced processing power.',
     highlights: [
       'Built-in WiFi connectivity',
@@ -51,7 +49,7 @@ const productsData = {
     name: 'ESP32 DevKitC V4',
     price: 449,
     rating: 4.7,
-    image: 'https://robu.in/wp-content/uploads/2019/11/ESP32-Development-Board-1.jpg',
+    image: 'https://robocraze.com/cdn/shop/products/DOIT-ESP32-DEVKIT-V1_720x.jpg',
     description: 'The ESP32 DevKitC V4 is a versatile development board featuring both WiFi and Bluetooth connectivity, perfect for IoT projects.',
     highlights: [
       'Dual-core processor',
@@ -69,7 +67,7 @@ const productsData = {
     name: 'DHT22 Temperature & Humidity Sensor',
     price: 349,
     rating: 4.5,
-    image: 'https://robu.in/wp-content/uploads/2016/01/DHT22-Temperature-Humidity-Sensor.jpg',
+    image: 'https://robocraze.com/cdn/shop/products/DHT22_2_720x.jpg',
     description: 'The DHT22 is a high-precision temperature and humidity sensor with a calibrated digital signal output.',
     highlights: [
       'High precision measurements',
@@ -114,7 +112,6 @@ const ProductDetail = () => {
       <Navbar />
       <main className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Product Image */}
           <div className="rounded-lg overflow-hidden border border-gray-200">
             <img 
               src={product.image} 
@@ -123,7 +120,6 @@ const ProductDetail = () => {
             />
           </div>
 
-          {/* Product Details */}
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
