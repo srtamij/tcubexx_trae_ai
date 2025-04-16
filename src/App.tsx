@@ -17,6 +17,7 @@ import Register from "./pages/Register";
 import OrderTracking from "./pages/OrderTracking";
 import Checkout from "./pages/Checkout";
 import CategoryExplore from "./pages/CategoryExplore";
+import ProductDetail from "./pages/ProductDetail";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
