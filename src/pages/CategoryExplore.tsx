@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ProductCard from '@/components/ProductCard';
 
 const categoryContent = {
   'development-boards': {
@@ -170,6 +171,26 @@ const categoryContent = {
   }
 };
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+  inStock: boolean;
+}
+
+const parseProductData = (product: { name: string; price: string; image: string }): Product => {
+  return {
+    id: Math.random(),
+    name: product.name,
+    price: parseInt(product.price.replace('₹', '').replace(',', '')),
+    image: product.image,
+    category: 'Development Boards',
+    inStock: true
+  };
+};
+
 const CategoryExplore = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
@@ -210,18 +231,13 @@ const CategoryExplore = () => {
                 </div>
               </div>
               
-              {item.products && (
+              {'products' in item && item.products && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {item.products.map((product, pIndex) => (
-                    <div key={pIndex} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-cover rounded-lg mb-4"
-                      />
-                      <h3 className="font-medium mb-2">{product.name}</h3>
-                      <p className="text-brand-purple font-bold">{product.price}</p>
-                    </div>
+                    <ProductCard 
+                      key={pIndex}
+                      {...parseProductData(product)}
+                    />
                   ))}
                 </div>
               )}
