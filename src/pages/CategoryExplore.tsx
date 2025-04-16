@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -6,7 +7,27 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 
-const categoryContent = {
+// Define proper types for our data structure
+interface ProductItem {
+  name: string;
+  price: string;
+  image: string;
+}
+
+interface CategoryItem {
+  title: string;
+  description: string;
+  image: string;
+  products?: ProductItem[];
+}
+
+interface CategoryData {
+  title: string;
+  description: string;
+  items: CategoryItem[];
+}
+
+const categoryContent: Record<string, CategoryData> = {
   'development-boards': {
     title: 'Development Boards',
     description: 'Explore our collection of Arduino, Raspberry Pi, ESP32 and more development boards',
@@ -180,7 +201,7 @@ interface Product {
   inStock: boolean;
 }
 
-const parseProductData = (product: { name: string; price: string; image: string }): Product => {
+const parseProductData = (product: ProductItem): Product => {
   return {
     id: Math.random(),
     name: product.name,
@@ -231,7 +252,7 @@ const CategoryExplore = () => {
                 </div>
               </div>
               
-              {'products' in item && item.products && (
+              {item.products && item.products.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {item.products.map((product, pIndex) => (
                     <ProductCard 
