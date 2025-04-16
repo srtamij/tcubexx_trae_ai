@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -14,18 +13,79 @@ const categoryContent = {
       {
         title: 'Raspberry Pi 5',
         description: 'The latest and most powerful Raspberry Pi board',
-        image: 'https://images.unsplash.com/photo-1649859398021-afbfe80e83b9?q=80&w=2970&auto=format&fit=crop',
+        image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-8GB.jpg',
+        products: [
+          {
+            name: 'Raspberry Pi 5 - 8GB',
+            price: '₹12,499',
+            image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-8GB.jpg'
+          },
+          {
+            name: 'Raspberry Pi 5 - 4GB',
+            price: '₹9,999',
+            image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-4GB.jpg'
+          },
+          {
+            name: 'Raspberry Pi 4 - 8GB',
+            price: '₹8,999',
+            image: 'https://robu.in/wp-content/uploads/2019/06/Raspberry-Pi-4-Model-B-8GB.jpg'
+          }
+        ]
       },
       {
-        title: 'Arduino Uno',
+        title: 'Arduino Family',
         description: 'Perfect for beginners and educational projects',
-        image: 'https://images.unsplash.com/photo-1608564697071-ebe98298ad5a?q=80&w=3174&auto=format&fit=crop',
+        image: 'https://robu.in/wp-content/uploads/2023/05/Arduino-UNO-R4-WIFI.jpg',
+        products: [
+          {
+            name: 'Arduino UNO R4 WiFi',
+            price: '₹4,999',
+            image: 'https://robu.in/wp-content/uploads/2023/05/Arduino-UNO-R4-WIFI.jpg'
+          },
+          {
+            name: 'Arduino Nano',
+            price: '₹499',
+            image: 'https://robu.in/wp-content/uploads/2016/02/Arduino-Nano.jpg'
+          },
+          {
+            name: 'Arduino Mega 2560',
+            price: '₹1,299',
+            image: 'https://robu.in/wp-content/uploads/2016/01/Arduino-Mega-2560.jpg'
+          },
+          {
+            name: 'Arduino Pro Mini',
+            price: '₹299',
+            image: 'https://robu.in/wp-content/uploads/2016/01/Arduino-Pro-Mini.jpg'
+          }
+        ]
       },
       {
-        title: 'ESP32',
-        description: 'WiFi and Bluetooth enabled development board',
-        image: 'https://images.unsplash.com/photo-1633413788319-98c12739d7c4?q=80&w=3174&auto=format&fit=crop',
-      },
+        title: 'ESP Family',
+        description: 'WiFi and Bluetooth enabled development boards',
+        image: 'https://robu.in/wp-content/uploads/2019/11/ESP32-Development-Board-1.jpg',
+        products: [
+          {
+            name: 'ESP32 DevKitC V4',
+            price: '₹449',
+            image: 'https://robu.in/wp-content/uploads/2019/11/ESP32-Development-Board-1.jpg'
+          },
+          {
+            name: 'ESP8266 NodeMCU',
+            price: '₹299',
+            image: 'https://robu.in/wp-content/uploads/2016/04/NodeMCU.jpg'
+          },
+          {
+            name: 'ESP32-CAM',
+            price: '₹599',
+            image: 'https://robu.in/wp-content/uploads/2019/12/ESP32-CAM-Development-Board.jpg'
+          },
+          {
+            name: 'ESP32-S3',
+            price: '₹799',
+            image: 'https://robu.in/wp-content/uploads/2022/05/ESP32-S3-DevKitC-1-N8R2.jpg'
+          }
+        ]
+      }
     ]
   },
   'sensors-modules': {
@@ -135,18 +195,36 @@ const CategoryExplore = () => {
         <h1 className="text-3xl font-bold mb-4">{category.title}</h1>
         <p className="text-gray-600 mb-8">{category.description}</p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-12">
           {category.items.map((item, index) => (
-            <div key={index} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <img 
-                src={item.image} 
-                alt={item.title} 
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+            <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div className="flex items-center gap-6 mb-6">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-32 h-32 object-cover rounded-lg"
+                />
+                <div>
+                  <h2 className="text-2xl font-semibold mb-2">{item.title}</h2>
+                  <p className="text-gray-600">{item.description}</p>
+                </div>
               </div>
+              
+              {item.products && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {item.products.map((product, pIndex) => (
+                    <div key={pIndex} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-48 object-cover rounded-lg mb-4"
+                      />
+                      <h3 className="font-medium mb-2">{product.name}</h3>
+                      <p className="text-brand-purple font-bold">{product.price}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
