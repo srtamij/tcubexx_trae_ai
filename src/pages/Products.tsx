@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Search, Filter, ChevronDown } from 'lucide-react';
+import ProductCard from '@/components/ProductCard';
+import ProductFilters from '@/components/ProductFilters';
+import SearchBar from '@/components/SearchBar';
 import { Button } from '@/components/ui/button';
-import { toast } from "@/hooks/use-toast";
-import { useCart } from '@/contexts/CartContext';
-import { Link } from 'react-router-dom';
 
 const Products = () => {
   const allProducts = [
@@ -80,17 +79,6 @@ const Products = () => {
   const [categoryFilter, setCategoryFilter] = useState('All Categories');
   const [stockFilter, setStockFilter] = useState('All Products');
   const [sortOption, setSortOption] = useState('Featured');
-  const { addToCart } = useCart();
-
-  const categories = [
-    'All Categories',
-    'Development Boards',
-    'Sensors & Modules',
-    'DIY Kits',
-    'Components',
-    'Tools',
-    'Books & Resources',
-  ];
 
   useEffect(() => {
     let filteredProducts = [...allProducts];
@@ -130,16 +118,6 @@ const Products = () => {
     setProducts(filteredProducts);
   }, [searchQuery, categoryFilter, stockFilter, sortOption]);
   
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    
-    toast({
-      title: `${product.name} added to cart!`,
-      description: product.inStock ? "Item has been added to your cart" : "You will be notified when this item is back in stock",
-      variant: product.inStock ? "default" : "destructive",
-    });
-  };
-
   const handleSearch = () => {
   };
 
@@ -156,109 +134,29 @@ const Products = () => {
                 Quality products at competitive prices, shipped across India and beyond.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="relative flex-grow">
-                  <input
-                    type="text"
-                    placeholder="Search products..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-3 pr-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
-                  />
-                  <Search className="absolute right-3 top-3 text-gray-400" />
-                </div>
-                <Button 
-                  className="bg-brand-purple hover:bg-brand-purple/90 text-white"
-                  onClick={handleSearch}
-                >
-                  Search
-                </Button>
-              </div>
+              <SearchBar 
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                handleSearch={handleSearch}
+              />
             </div>
           </div>
         </div>
 
         <div className="container mx-auto px-4 py-12">
-          <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center">
-                <Filter className="h-5 w-5 text-gray-500 mr-2" />
-                <span className="text-gray-700 font-medium">Filters:</span>
-              </div>
-              <div className="relative">
-                <select 
-                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
-                  value={categoryFilter}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
-                >
-                  {categories.map((category, index) => (
-                    <option key={index}>{category}</option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-2 top-2.5 h-4 w-4 text-gray-500 pointer-events-none" />
-              </div>
-              <div className="relative">
-                <select 
-                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
-                  value={stockFilter}
-                  onChange={(e) => setStockFilter(e.target.value)}
-                >
-                  <option>All Products</option>
-                  <option>In Stock</option>
-                  <option>Out of Stock</option>
-                </select>
-                <ChevronDown className="absolute right-2 top-2.5 h-4 w-4 text-gray-500 pointer-events-none" />
-              </div>
-            </div>
-            <div className="relative">
-              <select 
-                className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent"
-                value={sortOption}
-                onChange={(e) => setSortOption(e.target.value)}
-              >
-                <option>Featured</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest First</option>
-              </select>
-              <ChevronDown className="absolute right-2 top-2.5 h-4 w-4 text-gray-500 pointer-events-none" />
-            </div>
-          </div>
+          <ProductFilters 
+            categoryFilter={categoryFilter}
+            setCategoryFilter={setCategoryFilter}
+            stockFilter={stockFilter}
+            setStockFilter={setStockFilter}
+            sortOption={sortOption}
+            setSortOption={setSortOption}
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.length > 0 ? (
               products.map((product) => (
-                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
-                             product.id === 2 ? 'arduino-uno-r4' : 
-                             product.id === 3 ? 'esp32-devkit' : 
-                             'dht22-sensor'}`}>
-                    <div className="h-48 overflow-hidden">
-                      <img src={product.image} alt={product.name} className="w-full h-full object-cover transform hover:scale-105 transition-transform" />
-                    </div>
-                  </Link>
-                  <div className="p-4">
-                    <div className="text-xs text-gray-500 mb-1">{product.category}</div>
-                    <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
-                             product.id === 2 ? 'arduino-uno-r4' : 
-                             product.id === 3 ? 'esp32-devkit' : 
-                             'dht22-sensor'}`}>
-                      <h3 className="font-medium text-lg mb-2 hover:text-brand-purple">{product.name}</h3>
-                    </Link>
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-brand-purple">₹{product.price.toLocaleString()}</span>
-                      <span className={`text-xs px-2 py-1 rounded-full ${product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                        {product.inStock ? 'In Stock' : 'Out of Stock'}
-                      </span>
-                    </div>
-                    <Button 
-                      className="w-full mt-4 bg-brand-purple hover:bg-brand-purple/90 text-white"
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      {product.inStock ? 'Add to Cart' : 'Notify Me'}
-                    </Button>
-                  </div>
-                </div>
+                <ProductCard key={product.id} {...product} />
               ))
             ) : (
               <div className="col-span-4 py-8 text-center">
