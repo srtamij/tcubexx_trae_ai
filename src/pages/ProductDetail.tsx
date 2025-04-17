@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,6 +7,13 @@ import { useCart } from '@/contexts/CartContext';
 import { toast } from "@/hooks/use-toast";
 import { Star, ShoppingCart, Package, Info, Shield, Truck, ChevronDown, CheckCircle } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const productsData = {
   'raspberry-pi-5': {
@@ -178,6 +184,17 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
   const product = productsData[productId as keyof typeof productsData];
   const [quantity, setQuantity] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
+  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [isZoomed, setIsZoomed] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const productImages = [
+    product?.image || '/placeholder.svg',
+    '/placeholder.svg',
+    '/placeholder.svg',
+    '/placeholder.svg'
+  ];
 
   if (!product) {
     return (
@@ -210,6 +227,16 @@ const ProductDetail = () => {
     }
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!imageRef.current) return;
+    
+    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    
+    setZoomPosition({ x, y });
+  };
+
   return (
     <div>
       <Navbar />
@@ -220,18 +247,54 @@ const ProductDetail = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* Product Image */}
+          {/* Product Image Gallery */}
           <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <div className="rounded-lg overflow-hidden border border-gray-100 flex items-center justify-center h-[400px]">
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="w-full h-auto object-contain"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "https://placehold.co/400x300/e2e8f0/1e293b?text=Product+Image";
+            {/* Main Image with Zoom Effect */}
+            <div 
+              ref={imageRef}
+              className="rounded-lg overflow-hidden border border-gray-100 flex items-center justify-center h-[400px] relative cursor-zoom-in"
+              onMouseEnter={() => setIsZoomed(true)}
+              onMouseLeave={() => setIsZoomed(false)}
+              onMouseMove={handleMouseMove}
+            >
+              <div 
+                className={`w-full h-full transition-transform duration-200 ${isZoomed ? 'scale-150' : 'scale-100'}`}
+                style={{
+                  backgroundImage: `url(${productImages[activeImage]})`,
+                  backgroundPosition: isZoomed ? `${zoomPosition.x}% ${zoomPosition.y}%` : 'center',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
                 }}
-              />
+              ></div>
+            </div>
+
+            {/* Thumbnail Gallery */}
+            <div className="mt-4">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {productImages.map((image, index) => (
+                    <CarouselItem key={index} className="basis-1/4 md:basis-1/4">
+                      <div 
+                        className={`p-1 cursor-pointer rounded border ${activeImage === index ? 'border-brand-purple' : 'border-gray-200'}`}
+                        onClick={() => setActiveImage(index)}
+                      >
+                        <img 
+                          src={image} 
+                          alt={`${product.name} view ${index + 1}`}
+                          className="w-full h-20 object-contain"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = "https://placehold.co/400x300/e2e8f0/1e293b?text=Product+Image";
+                          }}
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2" />
+              </Carousel>
             </div>
           </div>
 
