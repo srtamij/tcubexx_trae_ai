@@ -41,7 +41,16 @@ const ProductCard = ({ id, name, image, price, category, inStock }: ProductCardP
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <Link to={`/product/${getProductSlug(id)}`}>
         <div className="h-48 overflow-hidden">
-          <img src={image} alt={name} className="w-full h-full object-cover transform hover:scale-105 transition-transform" />
+          <img 
+            src={image} 
+            alt={name} 
+            className="w-full h-full object-cover transform hover:scale-105 transition-transform"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              console.error(`Failed to load image: ${target.src}`);
+              target.src = "https://placehold.co/400x300/e2e8f0/1e293b?text=Image+Not+Found";
+            }} 
+          />
         </div>
       </Link>
       <div className="p-4">

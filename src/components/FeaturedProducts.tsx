@@ -77,7 +77,7 @@ const FeaturedProducts = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => (
-            <div key={product.id} className="product-card group">
+            <div key={product.id} className="product-card group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
                          product.id === 2 ? 'arduino-uno-r4' : 
                          product.id === 3 ? 'esp32-devkit' : 
@@ -87,6 +87,11 @@ const FeaturedProducts = () => {
                     src={product.image} 
                     alt={product.name}
                     className="w-full h-full object-cover product-img"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      console.error(`Failed to load image: ${target.src}`);
+                      target.src = "https://placehold.co/400x300/e2e8f0/1e293b?text=Image+Not+Found";
+                    }}
                   />
                   {product.tag && (
                     <div className={`absolute top-3 left-3 py-1 px-3 text-sm text-white font-medium rounded-full ${product.tagColor}`}>

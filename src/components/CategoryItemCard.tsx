@@ -16,6 +16,11 @@ const CategoryItemCard = ({ item }: CategoryItemCardProps) => {
           src={item.image} 
           alt={item.title} 
           className="w-32 h-32 object-cover rounded-lg"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            console.error(`Failed to load image: ${target.src}`);
+            target.src = "https://placehold.co/400x300/e2e8f0/1e293b?text=Product+Image";
+          }}
         />
         <div>
           <h2 className="text-2xl font-semibold mb-2">{item.title}</h2>
