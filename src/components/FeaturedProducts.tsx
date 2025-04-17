@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Star, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,7 +12,7 @@ const products = [
     name: 'Raspberry Pi 5 - 8GB RAM',
     price: 12499,
     rating: 5,
-    image: 'https://robocraze.com/cdn/shop/products/raspberry-pi-5-8gb_1_720x.jpg',
+    image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-8GB.jpg',
     tag: 'New',
     tagColor: 'bg-brand-purple',
     category: 'Development Boards',
@@ -22,7 +23,7 @@ const products = [
     name: 'Arduino UNO R4 WiFi',
     price: 4999,
     rating: 4.8,
-    image: 'https://robocraze.com/cdn/shop/products/arduino-uno-r4-wifi_1_720x.jpg',
+    image: 'https://robu.in/wp-content/uploads/2023/05/Arduino-UNO-R4-WIFI.jpg',
     tag: 'Bestseller',
     tagColor: 'bg-brand-saffron',
     category: 'DIY Kits',
@@ -33,7 +34,7 @@ const products = [
     name: 'ESP32 DevKitC V4',
     price: 449,
     rating: 4.7,
-    image: 'https://robocraze.com/cdn/shop/products/DOIT-ESP32-DEVKIT-V1_720x.jpg',
+    image: 'https://robu.in/wp-content/uploads/2019/11/ESP32-Development-Board-1.jpg',
     tag: 'Popular',
     tagColor: 'bg-brand-teal',
     category: 'Development Boards',
@@ -44,7 +45,7 @@ const products = [
     name: 'DHT22 Temperature & Humidity Sensor',
     price: 349,
     rating: 4.5,
-    image: 'https://robocraze.com/cdn/shop/products/DHT22_2_720x.jpg',
+    image: 'https://robu.in/wp-content/uploads/2016/01/DHT22-Temperature-Humidity-Sensor.jpg',
     tag: 'Best Value',
     tagColor: 'bg-red-500',
     category: 'Sensors & Modules',
