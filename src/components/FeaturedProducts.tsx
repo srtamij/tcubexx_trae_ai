@@ -86,7 +86,7 @@ const FeaturedProducts = () => {
                   <img 
                     src={product.image} 
                     alt={product.name}
-                    className="w-full h-full object-cover product-img"
+                    className="w-full h-full object-contain p-4 product-img"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       console.error(`Failed to load image: ${target.src}`);
@@ -102,31 +102,30 @@ const FeaturedProducts = () => {
               </Link>
               
               <div className="p-4">
-                <div className="flex items-center mb-1">
-                  <div className="flex text-brand-saffron">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-4 w-4"
-                        fill={i < Math.floor(product.rating) ? "currentColor" : "none"}
-                        strokeWidth={i < Math.floor(product.rating) ? 0 : 2}
-                      />
-                    ))}
+                <div className="flex justify-between mb-1">
+                  <div className="text-xs text-gray-500">{product.category}</div>
+                  <div className="flex items-center text-xs">
+                    <Star className="h-3 w-3 text-brand-saffron mr-1" fill="currentColor" />
+                    <span>{product.rating}</span>
                   </div>
-                  <span className="text-xs text-gray-500 ml-1">({product.rating})</span>
                 </div>
                 
                 <Link to={`/product/${product.id === 1 ? 'raspberry-pi-5' : 
                            product.id === 2 ? 'arduino-uno-r4' : 
                            product.id === 3 ? 'esp32-devkit' : 
                            'dht22-sensor'}`}>
-                  <h3 className="font-medium mb-1 hover:text-brand-purple">{product.name}</h3>
+                  <h3 className="font-medium mb-2 hover:text-brand-purple line-clamp-2 h-12">{product.name}</h3>
                 </Link>
-                <p className="text-brand-purple font-bold mb-3">₹{product.price.toLocaleString()}</p>
+                
+                <div className="flex justify-between items-center mb-3">
+                  <p className="text-brand-purple font-bold">₹{product.price.toLocaleString()}</p>
+                  <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">
+                    In Stock
+                  </span>
+                </div>
                 
                 <Button 
-                  className="w-full flex items-center justify-center" 
-                  variant="outline"
+                  className="w-full flex items-center justify-center bg-brand-purple hover:bg-brand-purple/90 text-white" 
                   onClick={() => handleAddToCart(product)}
                 >
                   <ShoppingCart className="h-4 w-4 mr-2" />

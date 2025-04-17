@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from "@/hooks/use-toast";
+import { ShoppingCart, Star } from 'lucide-react';
 
 interface ProductCardProps {
   id: number;
@@ -12,9 +13,10 @@ interface ProductCardProps {
   price: number;
   category: string;
   inStock: boolean;
+  rating?: number;
 }
 
-const ProductCard = ({ id, name, image, price, category, inStock }: ProductCardProps) => {
+const ProductCard = ({ id, name, image, price, category, inStock, rating = 4.5 }: ProductCardProps) => {
   const { addToCart } = useCart();
 
   const handleAddToCart = (product: ProductCardProps) => {
@@ -40,34 +42,53 @@ const ProductCard = ({ id, name, image, price, category, inStock }: ProductCardP
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <Link to={`/product/${getProductSlug(id)}`}>
-        <div className="h-48 overflow-hidden">
+        <div className="h-48 overflow-hidden relative">
           <img 
             src={image} 
             alt={name} 
-            className="w-full h-full object-cover transform hover:scale-105 transition-transform"
+            className="w-full h-full object-contain p-4 transform hover:scale-105 transition-transform"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               console.error(`Failed to load image: ${target.src}`);
               target.src = "https://placehold.co/400x300/e2e8f0/1e293b?text=Image+Not+Found";
             }} 
           />
+          {!inStock && (
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <span className="text-white font-semibold px-3 py-1 bg-red-500 rounded-full">Out of Stock</span>
+            </div>
+          )}
         </div>
       </Link>
       <div className="p-4">
-        <div className="text-xs text-gray-500 mb-1">{category}</div>
-        <Link to={`/product/${getProductSlug(id)}`}>
-          <h3 className="font-medium text-lg mb-2 hover:text-brand-purple">{name}</h3>
-        </Link>
-        <div className="flex justify-between items-center">
-          <span className="font-bold text-brand-purple">₹{price.toLocaleString()}</span>
-          <span className={`text-xs px-2 py-1 rounded-full ${inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-            {inStock ? 'In Stock' : 'Out of Stock'}
-          </span>
+        <div className="flex justify-between">
+          <div className="text-xs text-gray-500 mb-1">{category}</div>
+          {rating && (
+            <div className="flex items-center text-xs">
+              <Star className="h-3 w-3 text-brand-saffron mr-1" fill="currentColor" />
+              <span>{rating}</span>
+            </div>
+          )}
         </div>
+        
+        <Link to={`/product/${getProductSlug(id)}`}>
+          <h3 className="font-medium text-sm md:text-base mb-2 hover:text-brand-purple line-clamp-2 h-10">{name}</h3>
+        </Link>
+        
+        <div className="flex justify-between items-center mb-3">
+          <span className="font-bold text-brand-purple">₹{price.toLocaleString()}</span>
+          {inStock && (
+            <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">
+              In Stock
+            </span>
+          )}
+        </div>
+        
         <Button 
-          className="w-full mt-4 bg-brand-purple hover:bg-brand-purple/90 text-white"
+          className="w-full bg-brand-purple hover:bg-brand-purple/90 text-white"
           onClick={() => handleAddToCart({ id, name, image, price, category, inStock })}
         >
+          <ShoppingCart className="h-4 w-4 mr-2" />
           {inStock ? 'Add to Cart' : 'Notify Me'}
         </Button>
       </div>
