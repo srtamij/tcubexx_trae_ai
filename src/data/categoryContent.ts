@@ -8,76 +8,76 @@ export const categoryContent: Record<string, CategoryData> = {
       {
         title: 'Raspberry Pi 5',
         description: 'The latest and most powerful Raspberry Pi board',
-        image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-8GB.jpg',
+        image: '/placeholder.svg',
         products: [
           {
             name: 'Raspberry Pi 5 - 8GB',
             price: '₹12,499',
-            image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-8GB.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'Raspberry Pi 5 - 4GB',
             price: '₹9,999',
-            image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-4GB.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'Raspberry Pi 4 - 8GB',
             price: '₹8,999',
-            image: 'https://robu.in/wp-content/uploads/2019/06/Raspberry-Pi-4-Model-B-8GB.jpg'
+            image: '/placeholder.svg'
           }
         ]
       },
       {
         title: 'Arduino Family',
         description: 'Perfect for beginners and educational projects',
-        image: 'https://robu.in/wp-content/uploads/2023/05/Arduino-UNO-R4-WIFI.jpg',
+        image: '/placeholder.svg',
         products: [
           {
             name: 'Arduino UNO R4 WiFi',
             price: '₹4,999',
-            image: 'https://robu.in/wp-content/uploads/2023/05/Arduino-UNO-R4-WIFI.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'Arduino Nano',
             price: '₹499',
-            image: 'https://robu.in/wp-content/uploads/2016/02/Arduino-Nano.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'Arduino Mega 2560',
             price: '₹1,299',
-            image: 'https://robu.in/wp-content/uploads/2016/01/Arduino-Mega-2560.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'Arduino Pro Mini',
             price: '₹299',
-            image: 'https://robu.in/wp-content/uploads/2016/01/Arduino-Pro-Mini.jpg'
+            image: '/placeholder.svg'
           }
         ]
       },
       {
         title: 'ESP Family',
         description: 'WiFi and Bluetooth enabled development boards',
-        image: 'https://robu.in/wp-content/uploads/2019/11/ESP32-Development-Board-1.jpg',
+        image: '/placeholder.svg',
         products: [
           {
             name: 'ESP32 DevKitC V4',
             price: '₹449',
-            image: 'https://robu.in/wp-content/uploads/2019/11/ESP32-Development-Board-1.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'ESP8266 NodeMCU',
             price: '₹299',
-            image: 'https://robu.in/wp-content/uploads/2016/04/NodeMCU.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'ESP32-CAM',
             price: '₹599',
-            image: 'https://robu.in/wp-content/uploads/2019/12/ESP32-CAM-Development-Board.jpg'
+            image: '/placeholder.svg'
           },
           {
             name: 'ESP32-S3',
             price: '₹799',
-            image: 'https://robu.in/wp-content/uploads/2022/05/ESP32-S3-DevKitC-1-N8R2.jpg'
+            image: '/placeholder.svg'
           }
         ]
       }

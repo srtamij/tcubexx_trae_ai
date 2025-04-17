@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,7 +12,7 @@ const Products = () => {
     {
       id: 1,
       name: 'Raspberry Pi 5 - 8GB RAM',
-      image: 'https://robu.in/wp-content/uploads/2023/09/Raspberry-Pi-5-8GB.jpg',
+      image: '/placeholder.svg',
       price: 12499,
       category: 'Development Boards',
       inStock: true,
@@ -19,7 +20,7 @@ const Products = () => {
     {
       id: 2,
       name: 'Arduino UNO R4 WiFi',
-      image: 'https://robu.in/wp-content/uploads/2023/05/Arduino-UNO-R4-WIFI.jpg',
+      image: '/placeholder.svg',
       price: 4999,
       category: 'Development Boards',
       inStock: true,
@@ -27,7 +28,7 @@ const Products = () => {
     {
       id: 3,
       name: 'ESP32 DevKitC V4',
-      image: 'https://robu.in/wp-content/uploads/2019/11/ESP32-Development-Board-1.jpg',
+      image: '/placeholder.svg',
       price: 449,
       category: 'Development Boards',
       inStock: true,
@@ -35,7 +36,7 @@ const Products = () => {
     {
       id: 4,
       name: 'DHT22 Temperature & Humidity Sensor',
-      image: 'https://robu.in/wp-content/uploads/2016/01/DHT22-Temperature-Humidity-Sensor.jpg',
+      image: '/placeholder.svg',
       price: 349,
       category: 'Sensors & Modules',
       inStock: true,
@@ -43,7 +44,7 @@ const Products = () => {
     {
       id: 5,
       name: 'HC-SR501 PIR Motion Sensor',
-      image: 'https://robu.in/wp-content/uploads/2016/04/HC-SR501-PIR-Motion-Sensor.jpg',
+      image: '/placeholder.svg',
       price: 89,
       category: 'Sensors & Modules',
       inStock: true,
@@ -51,7 +52,7 @@ const Products = () => {
     {
       id: 6,
       name: 'Arduino Smart Home Kit',
-      image: 'https://robu.in/wp-content/uploads/2019/11/Arduino-Starter-Kit.jpg',
+      image: '/placeholder.svg',
       price: 3499,
       category: 'DIY Kits',
       inStock: true,
@@ -59,7 +60,7 @@ const Products = () => {
     {
       id: 7,
       name: 'HC-SR04 Ultrasonic Distance Sensor',
-      image: 'https://robu.in/wp-content/uploads/2016/06/HC-SR04-Ultrasonic-Distance-Sensor.jpg',
+      image: '/placeholder.svg',
       price: 89,
       category: 'Sensors & Modules',
       inStock: true,
@@ -67,7 +68,7 @@ const Products = () => {
     {
       id: 8,
       name: '8x8 LED Matrix Display with MAX7219',
-      image: 'https://robu.in/wp-content/uploads/2016/05/MAX7219-LED-Dot-Matrix.jpg',
+      image: '/placeholder.svg',
       price: 149,
       category: 'Components',
       inStock: true,
