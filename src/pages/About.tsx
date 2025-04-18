@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -69,10 +68,10 @@ const About = () => {
               {/* Team Member 1 */}
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">Rahul Sharma</h3>
+                  <h3 className="text-xl font-bold mb-2">Tamijuddin Mohammed</h3>
                   <p className="text-brand-purple font-medium mb-4">Founder & CEO</p>
                   <p className="text-gray-700">
-                    Electronics engineer with 10+ years of experience in product development and a passion for open-source hardware.
+                    Electronics engineer with 8+ years of experience in product development and a passion for open-source hardware.
                   </p>
                 </div>
               </div>
