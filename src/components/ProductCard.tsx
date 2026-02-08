@@ -99,27 +99,3 @@ const ProductCard = ({ id, name, image, price, category, inStock, rating = 4.5 }
 };
 
 export default ProductCard;
-
-
-interface ProductCardProps {
-  product: Product;
-}
-
-export function ProductCard({ product }: ProductCardProps) {
-  return (
-    <div className="group relative rounded-lg border p-4 hover:shadow-lg transition-shadow">
-      <div className="aspect-square overflow-hidden rounded-md">
-        <ProductImage
-          src={product.images.main}
-          alt={product.name}
-          className="h-full w-full object-cover transition-transform group-hover:scale-105"
-        />
-      </div>
-      <div className="mt-4">
-        <h3 className="text-lg font-semibold">{product.name}</h3>
-        <p className="mt-1 text-sm text-gray-500">{product.description}</p>
-        <p className="mt-2 text-lg font-bold">${product.price.toFixed(2)}</p>
-      </div>
-    </div>
-  );
-}

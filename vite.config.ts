@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [react()],
+  base: "/tcubexx_trae_ai/",
+  server: {
+    host: "::",
+    port: 8080,
+  },
+  plugins: [],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

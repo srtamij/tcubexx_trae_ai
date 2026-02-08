@@ -91,6 +91,10 @@
     @apply border-border;
   }
 
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
   body {
     @apply bg-background text-foreground font-poppins;
   }
