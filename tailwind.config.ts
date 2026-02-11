@@ -104,6 +104,7 @@ export default {
 			fontFamily: {
 				'poppins': ['Poppins', 'sans-serif'],
 				'orbitron': ['Orbitron', 'sans-serif'],
+				'exosquad': ['"Exo 2"', 'sans-serif'],
 			}
 		}
 	},

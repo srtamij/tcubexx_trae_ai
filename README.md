@@ -1,73 +1,61 @@
-# Welcome to your Lovable project
+# TCubex
 
-## Project info
+TCubex is a premier destination for electronics components, DIY kits, and learning resources in India. This platform provides a comprehensive shop for development boards, sensors, modules, and more, alongside a rich library of tutorials and project ideas.
 
-**URL**: https://lovable.dev/projects/27621408-4e0a-48ee-b831-0ab47cb665d6
+## Tech Stack
 
-## How can I edit this code?
+- **Frontend**: React with TypeScript
+- **Styling**: Tailwind CSS & shadcn/ui
+- **Build Tool**: Vite
+- **Routing**: React Router (HashRouter for GitHub Pages compatibility)
+- **Deployment**: GitHub Pages
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- **Component Shop**: Browse various electronic components and DIY kits.
+- **Learning Center**: Access tutorials, project ideas, and free resources.
+- **Responsive Design**: Fully optimized for mobile and desktop viewing.
+- **Modern UI**: Dark-themed aesthetic with a focus on usability.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/27621408-4e0a-48ee-b831-0ab47cb665d6) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v18 or higher recommended)
+- npm or yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/tcubexx_trae_ai.git
+   cd tcubex
+   ```
 
-Follow these steps:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Development
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Run the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build and Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To build the project for production:
+```bash
+npm run build
+```
 
-**Use GitHub Codespaces**
+To deploy the project to GitHub Pages:
+```bash
+npm run deploy
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## License
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/27621408-4e0a-48ee-b831-0ab47cb665d6) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+&copy; 2026 TCubex Private Limited. All rights reserved.

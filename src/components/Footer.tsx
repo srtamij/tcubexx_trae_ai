@@ -1,4 +1,3 @@
-import React from 'react';
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <span className="text-brand-purple text-2xl font-bold font-orbitron tracking-tight">TCubex</span>
+              <span className="text-brand-purple text-2xl font-bold font-exosquad tracking-tight">TCubex</span>
             </div>
             <p className="text-gray-400 mb-6">
               Your premier destination for electronics components, DIY kits, and learning resources in India.

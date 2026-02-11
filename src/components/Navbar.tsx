@@ -37,7 +37,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <span className="text-brand-purple text-3xl font-bold font-orbitron tracking-tight">TCubex</span>
+                <span className="text-brand-purple text-3xl font-bold font-exosquad tracking-tight">TCubex</span>
               </Link>
             </div>
 
